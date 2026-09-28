@@ -1,81 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bookdale — Publishing &amp; Story Development</title>
-  <meta name="description" content="Bookdale is a publishing and story development home for bold, character-driven fantasy. Home of Daughters of the Crown and Heroes by Accident." />
-  <link rel="stylesheet" href="css/style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bookdale — Publishing &amp; Story Development</title>
+<meta name="description" content="Bookdale is a publishing and story development home for bold, character-driven fantasy. Home of Daughters of the Crown and Heroes by Accident." />
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --ink: #23202b; --ink-soft: #5c5666;
+  --crown: #7b3fa0; --crown-deep: #5a2a79;
+  --parchment: #faf7f2; --card: #ffffff; --line: #e8e2d9;
+}
+html { scroll-behavior: smooth; }
+body { font-family: Georgia, "Times New Roman", serif; color: var(--ink); background: var(--parchment); line-height: 1.7; }
+.container { max-width: 960px; margin: 0 auto; padding: 0 1.25rem; }
+.site-header { position: sticky; top: 0; z-index: 10; background: rgba(250,247,242,0.95); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
+.nav { display: flex; align-items: center; justify-content: space-between; padding-top: 0.9rem; padding-bottom: 0.9rem; }
+.brand { font-weight: bold; font-size: 1.35rem; color: var(--crown-deep); text-decoration: none; letter-spacing: 0.02em; cursor: pointer; }
+.nav-links { list-style: none; display: flex; gap: 1.5rem; }
+.nav-links a { text-decoration: none; color: var(--ink-soft); font-size: 1rem; cursor: pointer; }
+.nav-links a:hover, .nav-links a.active { color: var(--crown-deep); }
+.hero { padding: 5rem 0 4.5rem; background: radial-gradient(1200px 400px at 80% -10%, rgba(123,63,160,0.14), transparent), var(--parchment); }
+.kicker { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.8rem; color: var(--crown); font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.75rem; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.15; margin-bottom: 1rem; }
+.lede { font-size: 1.15rem; color: var(--ink-soft); max-width: 34rem; margin-bottom: 2rem; }
+.btn { display: inline-block; padding: 0.8rem 1.6rem; border-radius: 999px; background: var(--crown); color: #fff; text-decoration: none; font-family: Arial, Helvetica, sans-serif; font-weight: bold; border: none; cursor: pointer; font-size: 0.95rem; }
+.btn:hover { background: var(--crown-deep); }
+.section { padding: 3.5rem 0; }
+.section-alt { background: #f3eee6; }
+.section h2 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+.page-title { padding: 3rem 0 0; }
+.page-title h1 { font-size: clamp(1.9rem, 4.5vw, 2.6rem); }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 1.75rem; box-shadow: 0 4px 14px rgba(35,32,43,0.06); }
+.card h3 { font-size: 1.3rem; margin-bottom: 0.35rem; color: var(--crown-deep); }
+.tag { font-family: Arial, Helvetica, sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-soft); margin-bottom: 0.75rem; }
+.story-link { color: inherit; text-decoration: none; cursor: pointer; }
+.story-link:hover { color: var(--crown-deep); text-decoration: underline; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+.chip { font-family: Arial, Helvetica, sans-serif; font-size: 0.85rem; padding: 0.45rem 1.1rem; border-radius: 999px; cursor: pointer; border: 1px solid var(--line); background: var(--card); color: var(--ink-soft); transition: all 0.15s; }
+.chip:hover { border-color: var(--crown); color: var(--crown-deep); }
+.chip-active { background: var(--crown); border-color: var(--crown); color: #fff; }
+.muted { color: var(--ink-soft); font-style: italic; }
+.content { max-width: 44rem; }
+.content h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+.content p + p { margin-top: 1rem; }
+.post h1 { font-size: 2.1rem; margin-bottom: 1rem; }
+.post .post-date { margin-bottom: 1.5rem; }
+.post-date { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 0.8rem; color: var(--ink-soft); margin-top: 0.2rem; }
+.text-link { color: var(--crown-deep); text-decoration: none; cursor: pointer; }
+.text-link:hover { text-decoration: underline; }
+.site-footer { padding: 2rem 0; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 0.95rem; text-align: center; margin-top: 3rem; }
+@media (max-width: 600px) { .nav { flex-direction: column; gap: 0.6rem; } .hero { padding: 3.5rem 0 3rem; } }
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav container">
-      <a href="index.html" class="brand">Bookdale</a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="blog.html">Blog</a></li>
-      </ul>
-    </nav>
-  </header>
+<header class="site-header">
+  <nav class="nav container">
+    <a class="brand" data-nav="home">Bookdale</a>
+    <ul class="nav-links">
+      <li><a data-nav="home">Home</a></li>
+      <li><a data-nav="about">About</a></li>
+      <li><a data-nav="blog">Blog</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <section class="hero">
-    <div class="container">
-      <p class="kicker">Publishing &amp; Story Development</p>
-      <h1>Stories with crowns, courage,<br />and a little accidental heroism.</h1>
-      <p class="lede">
-        Bookdale develops and publishes bold, character-driven fantasy.
-        We're currently bringing two worlds to life — and we're just getting started.
-      </p>
-      <a class="btn" href="#titles">Explore our titles</a>
-    </div>
-  </section>
+<div id="view"></div>
 
-  <section id="titles" class="section">
-    <div class="container">
-      <h2>Our titles</h2>
-      <div class="cards">
-        <article class="card">
-          <h3>Daughters of the Crown</h3>
-          <p class="tag">Fantasy series</p>
-          <p>
-            A sweeping tale of royal sisters, buried secrets, and a kingdom that
-            demands more of its daughters than anyone imagined. In development
-            for publication, with an animated serial adaptation in partnership
-            with Brightwood Animations.
-          </p>
-        </article>
-        <article class="card">
-          <h3>Heroes by Accident</h3>
-          <p class="tag">Fantasy series</p>
-          <p>
-            Nobody in this story asked to be a hero. An unlikely crew stumbles
-            into an adventure far bigger than their courage — and finds out
-            what they're truly made of. Also in development for publication and
-            animated adaptation.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 Bookdale. Published with love, one chapter at a time.</p>
+  </div>
+</footer>
 
-  <section class="section section-alt">
-    <div class="container">
-      <h2>From the blog</h2>
-      <ul class="post-list">
-        <li>
-          <a href="posts/launch.html">Welcome to Bookdale — our story begins</a>
-          <span class="post-date">September 28, 2026</span>
-        </li>
-      </ul>
-      <p><a href="blog.html" class="text-link">Read all posts →</a></p>
-    </div>
-  </section>
+<script>
+(function () {
+  'use strict';
+  var API = 'https://superagent-c65ff55e.base44.app/functions/getStories';
+  var view = document.getElementById('view');
+  var cache = null, cacheTime = 0;
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 Bookdale. Published with love, one chapter at a time.</p>
-    </div>
-  </footer>
+  function esc(t) {
+    return String(t || '').replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function fmtDate(d) {
+    if (!d) return '';
+    try {
+      return new Date(d + 'T00:00:00').toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    } catch (e) { return d; }
+  }
+
+  function getStories(force) {
+    var now = Date.now();
+    if (cache && !force && now - cacheTime < 60000) return Promise.resolve(cache);
+    return fetch(API, { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (d) {
+        cache = (d.stories || []).slice().sort(function (a, b) {
+          return (b.date || '').localeCompare(a.date || '');
+        });
+        cacheTime = now;
+        return cache;
+      });
+  }
+
+  function home() {
+    document.title = 'Bookdale — Publishing & Story Development';
+    view.innerHTML =
+      '<section class="hero"><div class="container">' +
+      '<p class="kicker">Publishing &amp; Story Development</p>' +
+      '<h1>Stories with crowns, courage,<br />and a little accidental heroism.</h1>' +
+      '<p class="lede">Bookdale develops and publishes bold, character-driven fantasy. We\'re currently bringing two worlds to life — and we\'re just getting started.</p>' +
+      '<a class="btn" data-nav="blog">Read the blog</a>' +
+      '</div></section>' +
+      '<section class="section"><div class="container">' +
+      '<h2>Our titles</h2><div class="cards">' +
+      '<article class="card"><h3>Daughters of the Crown</h3><p class="tag">Fantasy series</p>' +
+      '<p>A sweeping tale of royal sisters, buried secrets, and a kingdom that demands more of its daughters than anyone imagined. In development for publication, with an animated serial adaptation in partnership with Brightwood Animations.</p></article>' +
+      '<article class="card"><h3>Heroes by Accident</h3><p class="tag">Fantasy series</p>' +
+      '<p>Nobody in this story asked to be a hero. An unlikely crew stumbles into an adventure far bigger than their courage — and finds out what they\'re truly made of. Also in development for publication and animated adaptation.</p></article>' +
+      '</div></div></section>' +
+      '<section class="section section-alt"><div class="container">' +
+      '<h2>Latest from the blog</h2><div id="latest" class="cards"></div>' +
+      '<p style="margin-top:1.5rem;"><a class="text-link" data-nav="blog">Read all posts →</a></p>' +
+      '</div></section>';
+    getStories().then(function (stories) {
+      var el = document.getElementById('latest');
+      el.innerHTML = '';
+      stories.slice(0, 3).forEach(function (s) {
+        el.innerHTML += '<article class="card"><p class="tag">' + esc(s.category) + '</p>' +
+          '<h3><a class="story-link" data-story="' + esc(s.slug) + '">' + esc(s.title) + '</a></h3>' +
+          '<p class="post-date">' + esc(fmtDate(s.date)) + '</p></article>';
+      });
+    }).catch(function () {});
+  }
+
+  function about() {
+    document.title = 'About — Bookdale';
+    view.innerHTML =
+      '<section class="page-title"><div class="container"><h1>About Bookdale</h1></div></section>' +
+      '<main class="section"><div class="container content">' +
+      '<p>Bookdale is a publishing and story development house. We find stories with big hearts and bigger worlds, and we help them grow from first draft to finished book — and beyond.</p>' +
+      '<p>Right now our shelves are home to two fantasy titles in development: <em>Daughters of the Crown</em> and <em>Heroes by Accident</em>. Both are being developed for publication and for animated serial adaptations in partnership with our friends at Brightwood Animations.</p>' +
+      '<h2>What we believe</h2>' +
+      '<p>Great fantasy isn\'t about the size of the dragon — it\'s about the people riding toward it. We champion character-driven storytelling, patient world-building, and authors who write the stories only they can tell.</p>' +
+      '<h2>Work with us</h2>' +
+      '<p>Interested in submitting a story, partnering with us, or just saying hello? Reach us at <a class="text-link" href="mailto:bookdalestories@gmail.com">bookdalestories@gmail.com</a>.</p>' +
+      '</div></main>';
+  }
+
+  var activeCat = 'all';
+
+  function blog() {
+    document.title = 'Blog — Bookdale';
+    view.innerHTML =
+      '<section class="page-title"><div class="container"><h1>The Bookdale Blog</h1></div></section>' +
+      '<main class="section"><div class="container">' +
+      '<div id="chips" class="chip-row"></div>' +
+      '<div id="stories" class="cards"></div>' +
+      '<p id="msg" class="muted"></p>' +
+      '</div></main>';
+    getStories().then(function (stories) {
+      var chips = document.getElementById('chips');
+      var cats = [];
+      stories.forEach(function (s) {
+        if (s.category && cats.indexOf(s.category) === -1) cats.push(s.category);
+      });
+      chips.innerHTML = '';
+      var mk = function (cat) {
+        var b = document.createElement('button');
+        b.className = 'chip' + (cat === activeCat ? ' chip-active' : '');
+        b.textContent = cat === 'all' ? 'All posts' : cat;
+        b.addEventListener('click', function () { activeCat = cat; blog(); });
+        chips.appendChild(b);
+      };
+      mk('all');
+      cats.forEach(mk);
+      var list = activeCat === 'all' ? stories : stories.filter(function (s) { return s.category === activeCat; });
+      var el = document.getElementById('stories');
+      el.innerHTML = '';
+      list.forEach(function (s) {
+        el.innerHTML += '<article class="card"><p class="tag">' + esc(s.category) + '</p>' +
+          '<h3><a class="story-link" data-story="' + esc(s.slug) + '">' + esc(s.title) + '</a></h3>' +
+          '<p class="post-date">' + esc(fmtDate(s.date)) + '</p><p>' + esc(s.excerpt || '') + '</p></article>';
+      });
+      document.getElementById('msg').textContent = list.length ? '' : 'No stories published yet. Check back soon!';
+    }).catch(function () {
+      document.getElementById('msg').textContent = 'Couldn\'t load stories. Refresh the page in a moment.';
+    });
+  }
+
+  function story(slug) {
+    view.innerHTML = '<main class="section"><div class="container content post"><p class="muted">Loading story…</p></div></main>';
+    getStories().then(function (stories) {
+      var s = null;
+      for (var i = 0; i < stories.length; i++) if (stories[i].slug === slug) { s = stories[i]; break; }
+      if (!s) {
+        view.innerHTML = '<main class="section"><div class="container content"><h1>Story not found</h1></div></main>';
+        return;
+      }
+      document.title = s.title + ' — Bookdale';
+      view.innerHTML =
+        '<main class="section"><div class="container content post">' +
+        '<p class="post-date">' + esc(s.category || '') + (s.date ? ' · ' + esc(fmtDate(s.date)) : '') + '</p>' +
+        '<h1>' + esc(s.title) + '</h1>' +
+        '<div>' + (s.body || '') + '</div>' +
+        '<p style="margin-top:2rem;"><a class="text-link" data-nav="blog">← Back to the blog</a></p>' +
+        '</div></main>';
+    }).catch(function () {
+      view.innerHTML = '<main class="section"><div class="container content"><h1>Story not found</h1></div></main>';
+    });
+  }
+
+  function route() {
+    var h = (location.hash || '#home').replace(/^#/, '');
+    if (h.indexOf('story/') === 0) { story(h.slice(6)); return; }
+    if (h === 'about') { about(); return; }
+    if (h === 'blog') { blog(); return; }
+    home();
+  }
+  window.addEventListener('hashchange', route);
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('[data-nav],[data-story]') : null;
+    if (!t) return;
+    if (t.hasAttribute('data-nav')) {
+      location.hash = '#' + t.getAttribute('data-nav');
+    } else {
+      location.hash = '#story/' + t.getAttribute('data-story');
+    }
+    window.scrollTo(0, 0);
+  });
+
+  route();
+})();
+</script>
 </body>
 </html>

@@ -1,18 +1,22 @@
-# Bookdale
+# Bookdale — Publishing & Story Development
 
-Publishing & story development home for bold, character-driven fantasy.
-Home of *Daughters of the Crown* and *Heroes by Accident*.
+The official Bookdale website: bold, character-driven fantasy.
 
-## Site
-Static site (HTML/CSS). Served via GitHub Pages at:
-https://ubuntucodeworks.github.io/bookdale/
+Home of *Daughters of the Crown* and *Heroes by Accident* — publishing by Bookdale,
+animated serial adaptations in partnership with Brightwood Animations.
 
-## Structure
-- `index.html` — home
-- `about.html` — about Bookdale
-- `blog.html` — blog index
-- `posts/` — individual blog posts
-- `css/style.css` — site styles
+## This site
 
-## Local preview
-Open `index.html` in any browser, or run `python3 -m http.server` in this folder.
+Single-page site served by GitHub Pages. Stories are stored in a database and
+loaded live via a JSON API, so new posts appear instantly without code changes.
+
+## Pages
+
+- Home: hero, titles, latest posts
+- About: the story of Bookdale
+- Blog: all posts with category filters
+- Story pages: full posts at `#story/<slug>`
+
+## Contact
+
+bookdalestories@gmail.com
